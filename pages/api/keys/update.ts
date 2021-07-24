@@ -7,7 +7,7 @@ import db from '../../../lib/redis'
 export default function handler(req: NextApiRequest, res: NextApiResponse<string>) {
   if (typeof req.body !== 'object')
     res.status(400).send('Bad Request\n');
-  else if (req.method !== 'post')
+  else if (!/post/i.test(<string>req.method))
     res.status(405).send('Method Not Allowed\n')
   else {
     const id = createHash('sha256').update(String(req.query.fqdn)).digest('hex').slice(0, 8);
