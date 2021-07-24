@@ -8,7 +8,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<string
   const id = createHash('sha256').update(String(req.query.fqdn)).digest('hex').slice(0, 8);
   db.hget(id, <string>req.query.slug, (err, data) => {
     if (err)
-      res.status(500).send(err.message);
+      res.status(500).send(err.message + '\n');
     else if (data)
       res.status(200).send(data + '\n');
     else
