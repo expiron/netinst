@@ -4,7 +4,7 @@ import { createHash } from 'crypto'
 
 import db from '../../../lib/redis'
 
-const duration = 3600 * 24;
+const duration = 3600;
 
 export default function handler(req: NextApiRequest, res: NextApiResponse<string>) {
   if (typeof req.body !== 'string')
