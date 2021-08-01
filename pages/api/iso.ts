@@ -12,8 +12,9 @@ function getRequestProtocol(req: NextApiRequest): string {
 
 const mirrors: { [mirror: string]: string } = {
   'bupt': 'mirrors.bupt.edu.cn/ubuntu-cdimage',
-  'hit': 'mirrors.hit.edu.cn/ubuntu-cdimage',
   'cn': 'mirror.sjtu.edu.cn/ubuntu-cdimage',
+  'hit': 'mirrors.hit.edu.cn/ubuntu-cdimage',
+  'nb': 'downloads.izion.ml',
   'sjtu': 'mirror.sjtu.edu.cn/ubuntu-cdimage',
   'us': 'cdimage.ubuntu.com',
 };
