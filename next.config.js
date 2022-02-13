@@ -5,7 +5,11 @@ module.exports = {
     return [
       {
         source: '/download/:mirror/:codename.iso',
-        destination: '/api/iso',
+        destination: '/api/iso/daily',
+      },
+      {
+        source: '/download/release/:mirror/:codename.iso',
+        destination: '/api/iso/release',
       },
       {
         source: '/seed/new',
