@@ -16,7 +16,7 @@ const versions: {
   [K in Codename]: string
 } = {
   'bionic': '18.04.6',
-  'focal': '20.04.3',
+  'focal': '20.04.4',
   'hirsute': '21.04',
   'impish': '21.10',
 }
