@@ -10,6 +10,7 @@ const mirrors: { [mirror: string]: string } = {
   'nb': 'downloads.izion.ml',
   'sjtu': 'mirror.sjtu.edu.cn/ubuntu-releases',
   'us': 'releases.ubuntu.com',
+  'old': 'old-releases.ubuntu.com/releases',
 }
 
 const versions: {
@@ -54,6 +55,9 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
     const protocol = getRequestProtocol(req)
     const mirror = getMirrorBaseURL(<string>req.query.mirror)
     const codename = getCodename(<string>req.query.codename)
+    if (req.query.mirror == 'old') {
+      versions[codename] = '20.04.3'
+    }
     res.redirect(302, `${protocol}://${mirror}/${codename}/ubuntu-${versions[codename]}-live-server-amd64.iso`)
   }
 }
