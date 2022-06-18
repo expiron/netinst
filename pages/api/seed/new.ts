@@ -4,11 +4,11 @@ import { createHash } from 'crypto'
 
 import db from '../../../lib/redis'
 
-const duration = 3600;
+const duration = 3600
 
-export default function handler(req: NextApiRequest, res: NextApiResponse<string>) {
+export default async function handler(req: NextApiRequest, res: NextApiResponse<string>) {
   if (typeof req.body !== 'string')
-    res.status(400).send('Bad Request\n');
+    res.status(400).send('Bad Request\n')
   else if (!/post/i.test(<string>req.method))
     res.status(405).send('Method Not Allowed\n')
   else {
@@ -16,12 +16,10 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<string
       .update(String(Date.now()))
       .update(String(req.body))
       .digest('hex')
-      .slice(0, 8);
-    db.set(id, String(req.body), 'EX', duration, (err) => {
-      if (err)
-        res.status(500).send(err.message + '\n');
-      else
-        res.status(200).send(id + '\n');
-    });
+      .slice(0, 8)
+    await db.set(id, String(req.body), {
+      EX: duration,
+    })
+    res.status(200).send(`${id}\n`)
   }
 }

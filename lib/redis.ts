@@ -1,6 +1,10 @@
 
-import { createClient } from "redis";
+import { createClient } from "redis"
 
-const db = createClient(<string>process.env.REDIS_URL);
+const db = createClient({ url: process.env.REDIS_URL })
 
-export default db;
+db.on('error', err => console.log(`redis: ${err}`))
+
+db.connect()
+
+export default db
